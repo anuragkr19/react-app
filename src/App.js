@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter as Router,Switch,Route,Link} from 'react-router-dom';
+
+import ListView from './components/ListView';
+import RecepieDetail from './components/RecepieDetail';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+       <Router>
+         <div>
+          <ul style={{listStyleType:"none"}}>
+           <li>
+             <Link to="/">View All Recepie</Link>
+           </li>
+          </ul>
+          <Switch>
+            <Route path="/">
+              <ListView />
+            </Route>
+            <Route exact path={`/:recepieID`}>
+              <RecepieDetail />
+            </Route>
+          </Switch>
+         </div>
+       </Router>
     </div>
   );
 }
